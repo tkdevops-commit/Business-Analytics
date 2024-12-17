@@ -1,0 +1,40 @@
+import json
+
+# Convert Python dictionary to JSON
+def python_to_json(python_data):
+    try:
+        json_data = json.dumps(python_data, indent=4)  # Converts Python data to JSON string
+        return json_data
+    except (TypeError, ValueError) as e:
+        return f"Error converting Python to JSON: {e}"
+
+# Convert JSON string to Python dictionary
+def json_to_python(json_data):
+    try:
+        python_data = json.loads(json_data)  # Parses JSON string into Python data
+        return python_data
+    except json.JSONDecodeError as e:
+        return f"Error converting JSON to Python: {e}"
+
+# Example usage
+if __name__ == "__main__":
+    # Python dictionary example
+    python_dict = {
+        "name": "John Doe",
+        "age": 30,
+        "isEmployed": True,
+        "skills": ["Python", "JavaScript", "SQL"],
+        "address": {
+            "street": "123 Main St",
+            "city": "Metropolis",
+            "zip": "54321"
+        }
+    }
+
+    # Convert Python to JSON
+    json_output = python_to_json(python_dict)
+    print("JSON Output:\n", json_output)
+
+    # Convert JSON back to Python
+    python_output = json_to_python(json_output)
+    print("\nPython Output:\n", python_output)
